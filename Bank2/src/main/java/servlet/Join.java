@@ -37,19 +37,30 @@ public class Join extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		String id = request.getParameter("id");
-		String name = request.getParameter("name");
+		String id 		= request.getParameter("id");
+		String name 	= request.getParameter("name");
 		String password = request.getParameter("password");
-		String email = request.getParameter("email");
-		String address = request.getParameter("address");
-		if(id == null || password == null || email == null || address == null) {
+		String email	= request.getParameter("email");
+		String address  = request.getParameter("address");
+		RequestDispatcher dispatcher = null;
+		
+		if((id.trim() == "" || id == null)
+			|| (name.trim() 	== "" 	|| name == null)
+			|| (password.trim() == "" 	|| password == null )
+			|| (email.trim() 	== "" 	|| email == null) 
+			|| (address.trim() 	== "" 	|| address == null)
+		){
 			
+			request.setAttribute("err", "회원가입 양식을 확인하세요");
+			dispatcher = request.getRequestDispatcher("error.jsp");
+			dispatcher.forward(request, response);
 		}
+		else {
 		Member member = new Member(id, name, password, email, address);
 		HttpSession session = request.getSession();
 		session.setAttribute("member", member);
-//		session.setAttribute(id, member);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+		dispatcher = request.getRequestDispatcher("login.jsp");
 		dispatcher.forward(request, response);
+		}
 	}
 }

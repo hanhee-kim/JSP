@@ -26,6 +26,10 @@ public class AccountInfo extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("accountinfoform.jsp");
+		dispatcher.forward(request, response);
+	}
 
    /**
     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -39,13 +43,13 @@ public class AccountInfo extends HttpServlet {
       HttpSession session = request.getSession();
       Account acc = (Account) session.getAttribute(id);
       
-      RequestDispatcher dispatcher = request.getRequestDispatcher("main.jsp");
+      RequestDispatcher dispatcher = null;
       if(acc != null) {
          request.setAttribute("acc", acc);
-         request.setAttribute("page", "accountinfo");
+         dispatcher = request.getRequestDispatcher("accountinfo.jsp");
       } else {
          request.setAttribute("err", "계좌번호가 틀립니다.");
-         request.setAttribute("page", "error");
+         dispatcher = request.getRequestDispatcher("error.jsp");
       }
       
       dispatcher.forward(request, response);

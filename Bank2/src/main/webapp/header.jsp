@@ -22,7 +22,7 @@ a { text-decoration: none; }
 	<div class="innerDiv">
 		<div style="text-align:left; margin-left: 10px;">
 			<a href="makeaccount">계좌개설</a>&nbsp;&nbsp;
-			<a href="mdeposit">입금</a>&nbsp;&nbsp;
+			<a href="deposit">입금</a>&nbsp;&nbsp;
 			<a href="withdraw">출금</a>&nbsp;&nbsp;
 			<a href="accountinfoform">계좌조회</a>&nbsp;&nbsp;
 			<a href="allaccountinfo">전체계좌조회</a>&nbsp;&nbsp;

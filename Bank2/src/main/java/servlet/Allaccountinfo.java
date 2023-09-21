@@ -1,0 +1,59 @@
+package servlet;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import dto.Account;
+
+/**
+ * Servlet implementation class Allaccountinfo
+ */
+@WebServlet("/allaccountinfo")
+public class Allaccountinfo extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Allaccountinfo() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+    
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Account> accs = new ArrayList<>();
+		HttpSession session = request.getSession();
+		
+		Enumeration<String> e =	session.getAttributeNames();
+		while(e.hasMoreElements()) {
+			String name = e.nextElement();
+			if(name.equals("member") || name.equals("id")) continue;
+			Account acc = (Account)session.getAttribute(name);
+			accs.add(acc);
+		}
+		RequestDispatcher dispatcher = null;
+		
+		if(accs.size() > 0 ) {
+			request.setAttribute("accs", accs);
+			dispatcher = request.getRequestDispatcher("allaccountinfo.jsp");
+		} else {
+			request.setAttribute("err", "개설된 계좌가 없음");
+			dispatcher = request.getRequestDispatcher("error.jsp");
+		}
+		dispatcher.forward(request, response);
+	}
+
+}
