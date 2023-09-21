@@ -38,6 +38,9 @@ public class MakeAccount extends HttpServlet {
 		String type = request.getParameter("type");
 		String grade = request.getParameter("grade");
 		
+		if(grade == null) {
+			grade="";
+		}
 		Account acc = new Account(id, name, money, type, grade);
 		HttpSession session = request.getSession();
 		session.setAttribute(id, acc);  //session 의 이름이 id 값이 Account 객체 

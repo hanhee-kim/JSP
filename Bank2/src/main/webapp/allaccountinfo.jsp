@@ -51,6 +51,7 @@
     </style>
 </head>
 <body>
+<% pageContext.include("header.jsp"); %>
     <center>
         <form>
             <div class="header">

@@ -21,23 +21,23 @@ a { text-decoration: none; }
 	<i><h1 style="text-align:center;" href="main">kosta bank</h1></i>
 	<div class="innerDiv">
 		<div style="text-align:left; margin-left: 10px;">
-			<a href="main?page=makeaccount">계좌개설</a>&nbsp;&nbsp;
-			<a href="main?page=deposit">입금</a>&nbsp;&nbsp;
-			<a href="main?page=withdraw">출금</a>&nbsp;&nbsp;
-			<a href="main?page=accountinfoform">계좌조회</a>&nbsp;&nbsp;
+			<a href="makeaccount">계좌개설</a>&nbsp;&nbsp;
+			<a href="mdeposit">입금</a>&nbsp;&nbsp;
+			<a href="withdraw">출금</a>&nbsp;&nbsp;
+			<a href="accountinfoform">계좌조회</a>&nbsp;&nbsp;
 			<a href="allaccountinfo">전체계좌조회</a>&nbsp;&nbsp;
 		</div>
 		<div style="float:right; margin-right: 10px;">
 		<%
 			if(id == null){
 		%>
-			<a href="main?page=login">로그인</a>&nbsp;&nbsp;
+			<a href="login">로그인</a>&nbsp;&nbsp;
 		<%
 		} else{
 		%>
 			<%=id %>님 환영합니다. &nbsp;&nbsp;<a href="logout">로그아웃</a>&nbsp;&nbsp;
 		<%} %>
-			<a href="main?page=join">회원가입</a>&nbsp;&nbsp;
+			<a href="join">회원가입</a>&nbsp;&nbsp;
 		</div>
 	</div>
 </div>

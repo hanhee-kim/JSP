@@ -43,6 +43,7 @@
     </style>
 </head>
 <body>
+<% pageContext.include("header.jsp"); %>
     <center>
         <div class="header">
             <h3>계좌조회</h3>

@@ -43,21 +43,27 @@
     </style>
 </head>
 <body>
-    <center>
+<% pageContext.include("header.jsp"); %>
+   <center>
         <div class="header">
-            <h3>계좌조회</h3>
+            <h3>출금</h3>
         </div>
-        <div class="container" id='query'>
-            <form action="accountInfo" method="post" id='form'>
+        <div class="container" id='withdraw'>
+            <form id='form' action="withdraw" method="post">
                 <div class="row">
                     <div class="title">계좌번호</div>
                     <div class="input"><input type="text" name="id"></div>
                 </div>
+                <div class="row">
+                    <div class="title">출금액</div>
+                    <div class="input"><input type="text" name="money"></div>
+                </div>
                 <div class="button">
-                    <input type="submit" value="조회">
+                    <input type="submit" value="출 금">
                 </div>
             </form>
         </div>
+
     </center>
 </body>
 </html>

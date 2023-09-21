@@ -13,21 +13,19 @@ import javax.servlet.http.HttpSession;
 import dto.Account;
 
 /**
- * Servlet implementation class Deposit
+ * Servlet implementation class Withdraw
  */
-@WebServlet("/deposit")
-public class Deposit extends HttpServlet {
+@WebServlet("/withdraw")
+public class Withdraw extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Deposit() {
+    public Withdraw() {
         super();
         // TODO Auto-generated constructor stub
     }
-
-
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -39,7 +37,7 @@ public class Deposit extends HttpServlet {
 		Account acc =(Account) session.getAttribute(id);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("main.jsp");
 		if(acc != null) {
-			acc.deposit(Integer.parseInt(request.getParameter("money")));
+			acc.withdraw(Integer.parseInt(request.getParameter("money")));
 	         request.setAttribute("acc", acc);
 	         request.setAttribute("page", "accountinfo");
 	      } else {

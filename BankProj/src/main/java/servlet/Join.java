@@ -10,24 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dto.Account;
+import dto.Member;
 
 /**
- * Servlet implementation class Deposit
+ * Servlet implementation class Join
  */
-@WebServlet("/deposit")
-public class Deposit extends HttpServlet {
+@WebServlet("/join")
+public class Join extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Deposit() {
+    public Join() {
         super();
         // TODO Auto-generated constructor stub
     }
-
-
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -35,18 +33,22 @@ public class Deposit extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String id = request.getParameter("id");
+		String name = request.getParameter("name");
+		String password = request.getParameter("password");
+		String email = request.getParameter("email");
+		String address = request.getParameter("address");
+		if(id == null || password == null || email == null || address == null) {
+			request.setAttribute("err", "회원가입 양식을 확인해주세요");
+			request.setAttribute("page", "error");
+		}
+		Member member = new Member(id, name, password, email, address);
 		HttpSession session = request.getSession();
-		Account acc =(Account) session.getAttribute(id);
+		session.setAttribute("member", member);
+//		session.setAttribute(id, member);
+		request.setAttribute("page", "login");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("main.jsp");
-		if(acc != null) {
-			acc.deposit(Integer.parseInt(request.getParameter("money")));
-	         request.setAttribute("acc", acc);
-	         request.setAttribute("page", "accountinfo");
-	      } else {
-	         request.setAttribute("err", "계좌번호가 틀립니다.");
-	         request.setAttribute("page", "error");
-	      }
 		dispatcher.forward(request, response);
+		
 	}
 
 }
