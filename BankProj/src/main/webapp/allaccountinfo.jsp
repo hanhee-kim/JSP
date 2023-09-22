@@ -75,7 +75,7 @@
                     <div class="colume"><%=accs.get(i).getName() %></div>
                     <div class="colume"><%=accs.get(i).getBalance() %></div>
                     <div class="colume"><%=accs.get(i).getType() %></div>
-                    <div class="colume"><%=accs.get(i).getGrade() %></div>
+                    <div class="colume"><%=accs.get(i).getGrade() %>&nbsp;</div>
                 </div>	
                 <% 
                 	}

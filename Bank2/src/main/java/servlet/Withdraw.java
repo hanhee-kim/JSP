@@ -27,6 +27,12 @@ public class Withdraw extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	HttpSession session = request.getSession();
+    	if(session.getAttribute("id") == null) {
+    		request.setAttribute("err", "로그인해야 ~~");
+    		request.getRequestDispatcher("error.jsp").forward(request, response);
+    		return;
+    	}
 		RequestDispatcher dispatcher = request.getRequestDispatcher("withdraw.jsp");
 		dispatcher.forward(request, response);
 	}

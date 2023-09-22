@@ -44,6 +44,7 @@ public class Join extends HttpServlet {
 		Member member = new Member(id, name, password, email, address);
 		HttpSession session = request.getSession();
 		session.setAttribute("member", member);
+//		session.setAttribute(id, member);
 		request.setAttribute("page", "login");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("main.jsp");
 		dispatcher.forward(request, response);

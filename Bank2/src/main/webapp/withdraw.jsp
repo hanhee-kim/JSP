@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="dto.Account" %>
+<%
+Account acc = (Account)request.getAttribute("acc");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +56,17 @@
             <form id='form' action="withdraw" method="post">
                 <div class="row">
                     <div class="title">계좌번호</div>
+                    <%
+                    if(acc == null){
+                    %>
                     <div class="input"><input type="text" name="id"></div>
+					<%
+                    } else{
+					%>    
+                    <div class="input"><input type="text" name="id" value="<%=acc.getId() %>"></div>
+                    <%
+                    }
+                    %>	
                 </div>
                 <div class="row">
                     <div class="title">출금액</div>

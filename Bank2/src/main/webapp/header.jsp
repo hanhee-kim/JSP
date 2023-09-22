@@ -18,13 +18,13 @@ a { text-decoration: none; }
 }
 </style>
 <div class="outerDiv">
-	<i><h1 style="text-align:center;" href="main">kosta bank</h1></i>
+	<i><h1 style="text-align:center;"><a href="main">kosta bank</a></h1></i>
 	<div class="innerDiv">
 		<div style="text-align:left; margin-left: 10px;">
 			<a href="makeaccount">계좌개설</a>&nbsp;&nbsp;
 			<a href="deposit">입금</a>&nbsp;&nbsp;
 			<a href="withdraw">출금</a>&nbsp;&nbsp;
-			<a href="accountinfoform">계좌조회</a>&nbsp;&nbsp;
+			<a href="accountinfo">계좌조회</a>&nbsp;&nbsp;
 			<a href="allaccountinfo">전체계좌조회</a>&nbsp;&nbsp;
 		</div>
 		<div style="float:right; margin-right: 10px;">

@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="dto.Member" %>    
+<% String id = (String)session.getAttribute("id");
+	Member member = (Member)session.getAttribute("member");
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +48,7 @@
 <body>
 <% pageContext.include("header.jsp"); %>
     <center>
-        <form action="makeAccount" method="post">
+        <form action="makeaccount" method="post">
             <div class="header">
                 <h3>계좌개설</h3>
             </div>
@@ -54,7 +59,20 @@
                 </div>
                 <div class="row">
                     <div class="title">이름</div>
+                    <%
+                    if(id == null){
+                    %>
                     <div class="input"><input type="text" name="name" id='name'></div>
+					<%
+                    } else{
+					%>                    	
+                    <div class="input"><input type="text" name="name" id='name' value="<%=member.getName()%>"></div>
+                    
+                    <%
+                    }
+                    %>	
+                    
+                    
                 </div>
                 <div class="row">
                     <div class="title">입금액</div>

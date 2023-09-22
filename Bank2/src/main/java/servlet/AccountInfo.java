@@ -15,7 +15,7 @@ import dto.Account;
 /**
  * Servlet implementation class AccountInfo
  */
-@WebServlet("/accountInfo")
+@WebServlet("/accountinfo")
 public class AccountInfo extends HttpServlet {
    private static final long serialVersionUID = 1L;
        
@@ -27,6 +27,12 @@ public class AccountInfo extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	HttpSession session = request.getSession();
+    	if(session.getAttribute("id") == null) {
+    		request.setAttribute("err", "로그인해야 계좌 만들 수 있따잉");
+    		request.getRequestDispatcher("error.jsp").forward(request, response);
+    		return;
+    	}
 		RequestDispatcher dispatcher = request.getRequestDispatcher("accountinfoform.jsp");
 		dispatcher.forward(request, response);
 	}

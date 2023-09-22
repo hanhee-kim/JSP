@@ -30,6 +30,12 @@ public class Logout extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+    	if(session.getAttribute("id") == null) {
+    		request.setAttribute("err", "으디로 접근해 ??");
+    		request.getRequestDispatcher("error.jsp").forward(request, response);
+    		return;
+    	}
+//		HttpSession session = request.getSession();
 		session.removeAttribute("id");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 		dispatcher.forward(request, response);
