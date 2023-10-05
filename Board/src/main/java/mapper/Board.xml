@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="mapper.board">
+ 
+ 	<!-- 글쓰기 -->
+ 	<insert id="insertBoard" parameterType="Board" useGeneratedKeys="true" keyProperty="num">
+ 	<!-- useGeneratedKeys="true" : AUTO_INCREMENT 사용을 true , keyProperty="num" : key는 num -->
+ 		<![CDATA[
+ 			insert into board (subject,content,writedate,fileurl,writer) values(#{subject}, #{content}, curdate(), #{fileurl}, #{writer})
+ 		]]>
+ 	</insert>
+ 	
+ 	
+ 	
+ 	<!-- 모든 게시글 검색 -->
+ 	<!-- limit #{시작몇부터},몇개의 게시물을 가져올지 -->
+ 	<select id="selectBoardAll" parameterType="Integer" resultType="Board">
+ 		<![CDATA[
+ 			select * from board order by num desc
+ 			limit #{row},10
+ 		]]>
+ 	</select>
+ 	<!-- 전체 게시글 개수를 알아오는 쿼리문 -->
+ 	<select id="selectBoardCount" resultType="Integer">
+ 		<![CDATA[
+ 			select count(num) from board
+ 		]]>
+ 	</select>
+ 	
+ 	
+ 	<!-- 글제목으로 검색 -->
+ 	<select id="selectBoardSubject" parameterType="String" resultType="Board">
+ 		<![CDATA[
+ 			select * from board where subject in #{subject}
+ 		]]>
+ 	</select>
+ 	<!-- 글작성자로 검색 -->
+ 	<select id="selectBoardWriter" parameterType="String" resultType="Board">
+ 		<![CDATA[
+ 			select * from board where writer = #{writer}
+ 		]]>
+ 	</select>
+ 	<!-- 글내용으로 검색 -->
+ 	<select id="selectBoardContent" parameterType="String" resultType="Board">
+ 		<![CDATA[
+ 			select * from board where content in #{content}
+ 		]]>
+ 	</select>
+ 	
+ </mapper>
